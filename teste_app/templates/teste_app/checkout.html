@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Checkout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href={% static "css/normalize.css" %}/>
+    <link rel="stylesheet" href={% static "css/mystyle.css" %}/>
+  </head>
+  <body>
+        <div class="sr-root">
+          <div class="sr-main">
+            <h1>Checkout</h1>
+            <h2>Faça o checkout aqui :)</h2>
+            <form id="payment-form" class="sr-payment-form">
+              <div class="sr-combo-inputs-row">
+                <div id="card-element" class="sr-input sr-card-element">
+                  <!-- Elements will create input elements here -->
+                </div>
+              </div>
+              <div id="card-errors-input" class="sr-field-error" role="alert">
+                <!-- We'll put the error messages in this element -->
+              </div>
+              <button id="submit" data-secret="{{ client_secret }}">
+                <div class="spinner hidden" id="spinner"></div>
+                <span id="button-text">Pay {{ amount }}</span><span id="order-amount"></span>
+              </button>
+              <div id="card-errors-response" class="sr-field-error" role="alert">
+                <!-- We'll put the error messages in this element -->
+              </div>
+            </form>
+            <div class="sr-result hidden">
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src={% static "javascript/script.js" %}></script>
+  </body>
+</html>
