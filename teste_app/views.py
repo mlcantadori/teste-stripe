@@ -6,19 +6,21 @@ from django.http import HttpResponse
 import json
 import logging
 import stripe
+from decimal import Decimal
 
 # Create your views here.
 def checkout_view(request):
 
-    amount = 1000
     intent = stripe.PaymentIntent.create(
-         amount=amount,
+         amount=3000,
          currency='usd',
          # Verify your integration in this guide by including this parameter
          metadata={'integration_check': 'accept_a_payment'},
     )
-
-    stripe_dict={'stripe_publishable_key':settings.STRIPE_PUBLISHABLE_API_KEY,'client_secret':intent.client_secret,'amount':amount}
+    curr = str(intent.currency)
+    a = Decimal(str(intent.amount/100)).quantize(Decimal('.01'))
+    #amount = curr + a
+    stripe_dict={'stripe_publishable_key':settings.STRIPE_PUBLISHABLE_API_KEY,'client_secret':intent.client_secret,'amount':a,'currency':curr}
     return render(request,'teste_app/checkout.html',context=stripe_dict)
 
 # @csrf_exempt
