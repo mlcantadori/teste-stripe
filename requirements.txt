@@ -1,4 +1,4 @@
-Django==3.0.5
+Django==3.1.9
 docker==4.2.0
 docker-compose==1.25.5
 dockerpty==0.4.1
